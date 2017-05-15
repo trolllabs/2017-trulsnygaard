@@ -73,7 +73,7 @@ This script can be used in general cases to read an arbitrary video stream from 
 
 ## calibrate.py
 
-calibrate.py is used for cropping the image frame of of the camera in the headmount and is initiated by typing 
+calibrate.py is used for cropping the image frame of of the camera that tracks the eye and is initiated by typing 
 >python main.py -cb 1.
 
 This script changes the cropping of the image frame by use of the trackbars.
