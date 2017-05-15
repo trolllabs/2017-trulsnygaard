@@ -35,6 +35,8 @@ and the argument parser lets the user change the run commands. This means that i
 or changing resolution by typing
 > python main.py -x 320 -y 240
 
+and more. Read the code for all options.
+
 ## DetectPupil.py
 
 DetectPupil.py contains the class DetectPupil. The class initiates a thread for the update() function when the start() function is called. 
