@@ -42,7 +42,9 @@ and more. Read the code for all options.
 DetectPupil.py contains the class DetectPupil. The class initiates a thread for the update() function when the start() function is called. 
 This function detects the pupil and sends byte information about the position to the Arduino, via Serial.
 
-The position can be read with the read() function. This function returns raw position (x,y), position converted for displaying gaze unto the display (x_conv,y_conv) and the image frame.
+The position can be read with the read() function. This function returns raw position (x,y), position converted for displaying gaze unto the display (x_conv,y_conv), radius r for the pupil detected and the image frame.
+
+Remember to customize the variables in this script to your application. The variables in DetectPupil are carefully calibrated to one specific case.
 
 ### Using the Pupil tracker on its own
 
@@ -50,10 +52,17 @@ Import, initiate, loop:
 
 ```
  from DetectPupil import DetectPupil
+ import cv2
+ 
  pupil = DetectPupil((resx,resy),FPS,arduino,left, right, lower, upper)
  pupil.start()
+ 
  while True:
-   x,y,x_conv,y_conv,r,frame = pupil.read()   
+   x,y,x_conv,y_conv,r,frame = pupil.read()
+   
+   # do something with the image and position, for example draw a circle around the pupil and show the image:
+   cv2.circle(frame,(x,y),r,(0,0,255),3)
+   cv2.imshow("Display", frame)
 
    if cv2.waitKey(1) & 0xFF == ord('q'):
       pupil.stop()
