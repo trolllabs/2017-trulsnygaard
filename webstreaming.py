@@ -6,7 +6,7 @@ from threading import Thread
 
 class stream:
 
-    def __init__(self,URL="http://192.168.2.1/?action=stream"):
+    def __init__(self,URL):
         self.URL = URL
         self.stream = request.urlopen(self.URL)
         self.byte = b""
