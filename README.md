@@ -78,7 +78,29 @@ DetectPupil() initiation variables are:
 
 Wireless.py connects to wireless WIFI camera that streams the video on a local network. The Raspberry Pi must be connected to the wifi network of the camera, and this script reads the stream from "http://192.168.2.1/?action=stream".
 
-This script can be used in general cases to read an arbitrary video stream from a webpage. Find the adress of the video stream (should look somewhat like the above adress) and insert into code.
+### Using the wireless streaming on your computer
+This script can be used in general cases to read an arbitrary video stream from a simple webpage. Find the adress of the video stream (should look somewhat like the above adress) and insert into code.
+
+A similar file to wireless.py has been added, called webstreaming.py. webstreaming.py has somewhat different syntax than wireless.py.
+
+```
+from webstreaming import stream
+import cv2
+
+URL = "https://yourstreamingadress.com/?action=stream" #or something similar to this. 
+stream = stream(URL)
+stream.start()
+
+while True:
+	frame = stream.read()
+	if frame is not None:
+		cv2.imshow("frame",frame)
+
+	if cv2.waitKey(33) & 0xFF == ord('q'):
+            stream.stop()
+            cv2.destroyAllWindows()
+```
+
 
 ## calibrate.py
 
